@@ -8,7 +8,7 @@
 
     "modules-left": ["custom/power", "hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["hyprland/language", "cpu", "memory", "disk", "pulseaudio", "network", "tray"],
+    "modules-right": ["hyprland/language", "cpu", "memory", "disk", "network", "tray"],
 
     "hyprland/language": {
         "format-en": "en ",
@@ -74,24 +74,6 @@
         "format-linked": "{ifname} (No IP)  ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}% 󰂯",
-        "format-bluetooth-muted": "󰖁 {icon} 󰂯",
-        "format-muted": "󰖁 {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "󰋋",
-            "hands-free": "󱡒",
-            "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
     },
     "custom/power": {
       "format": "{icon}",
