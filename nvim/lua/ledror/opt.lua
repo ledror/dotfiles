@@ -5,9 +5,6 @@ vim.g.loaded_netrwPlugin = 1
 -- enable 24-bit colour
 vim.opt.termguicolors = true
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 vim.opt.guicursor = ""
 vim.opt.colorcolumn = ""
 vim.opt.signcolumn = "yes"
