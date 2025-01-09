@@ -42,3 +42,7 @@ vim.keymap.set("n", "<M-h>", ":split <CR>")
 -- useless maps, make them do nothing
 vim.keymap.set('', "<S-Down>", "<nop>")
 vim.keymap.set('', "<S-Up>", "<nop>")
+
+-- some floats
+vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
+vim.keymap.set("n", "<C-f>", function() vim.diagnostic.open_float() end)
