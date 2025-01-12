@@ -6,7 +6,7 @@ return {
 			-- snippet engine
 			"L3MON4D3/LuaSnip",
 			dependencies = "rafamadriz/friendly-snippets",
-			run = "make install_jsregexp"
+			run = "make install_jsregexp",
 		},
 		{
 			"saadparwaiz1/cmp_luasnip",
@@ -19,9 +19,7 @@ return {
 		local ls = require("luasnip")
 		cmp.setup({
 			snippet = {
-				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
-				end,
+				expand = function(args) require("luasnip").lsp_expand(args.body) end,
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-n>"] = cmp.mapping.select_next_item(),
@@ -39,7 +37,7 @@ return {
 					else
 						fallback()
 					end
-				end, { "i", "s", }),
+				end, { "i", "s" }),
 			}),
 			sources = cmp.config.sources({
 				{

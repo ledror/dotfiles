@@ -3,7 +3,7 @@ return {
 	build = ":TSUpdate",
 	opts = {
 		sync_install = false,
-		indent = { enable = false, },
-		highlithg = { enable = true, },
+		indent = { enable = false },
+		highlithg = { enable = true },
 	},
 }

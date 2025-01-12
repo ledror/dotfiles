@@ -1,7 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
-	dependencies = { "nvim-lua/plenary.nvim", },
+	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		local builtin = require("telescope.builtin")
 
@@ -20,6 +20,5 @@ return {
 		vim.keymap.set("n", "gd", builtin.lsp_definitions)
 		vim.keymap.set("n", "gn", builtin.lsp_incoming_calls)
 		vim.keymap.set("n", "gN", builtin.lsp_outgoing_calls)
-
-	end
+	end,
 }
