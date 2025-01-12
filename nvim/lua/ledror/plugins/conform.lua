@@ -5,21 +5,24 @@ return {
 	keys = {
 		{
 			"<leader>fm",
-			function()
-				require("conform").format({ async = true })
-			end,
-		}
+			function() require("conform").format({ async = true }) end,
+		},
 	},
 	opts = {
-		formatters_by_ft = {
-			c = { "clang-format" },
-			cpp = { "clang-format" },
-			["_"] = { "trim_whitespace" },
+		formatters = {
+			clang_format = {
+				args = { "--style", "{BasedOnStyle: GOOGLE, IndentWidth: 4, TabWidth: 4, ColumnLimit: 100}" },
+			},
+			stylua = {
+				inherit = true,
+				prepend_args = { "--collapse-simple-statement=FunctionOnly" },
+			},
 		},
-		format_on_save = {
-			-- These options will be passed to conform.format()
-			timeout_ms = 500,
-			lsp_format = "fallback",
+		formatters_by_ft = {
+			c = { "clang_format" },
+			cpp = { "clang_format" },
+			lua = { "stylua" },
+			["_"] = { "trim_whitespace" },
 		},
 	},
 }
