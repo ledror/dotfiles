@@ -43,6 +43,8 @@ vim.keymap.set("n", "<M-h>", ":split <CR>")
 vim.keymap.set("", "<S-Down>", "<nop>")
 vim.keymap.set("", "<S-Up>", "<nop>")
 
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+
 -- some floats
-vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
-vim.keymap.set("n", "<C-f>", function() vim.diagnostic.open_float() end)
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+vim.keymap.set("n", "<C-f>", vim.diagnostic.open_float)

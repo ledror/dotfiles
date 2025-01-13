@@ -3,20 +3,24 @@ return {
 	event = "InsertEnter",
 	dependencies = {
 		{
-			-- snippet engine
 			"L3MON4D3/LuaSnip",
-			dependencies = "rafamadriz/friendly-snippets",
-			run = "make install_jsregexp",
-		},
-		{
+			"rafamadriz/friendly-snippets",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+		},
+		{
+			"windwp/nvim-autopairs",
+			event = "InsertEnter",
+			config = true,
 		},
 	},
 	config = function()
 		local cmp = require("cmp")
 		local ls = require("luasnip")
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		cmp.setup({
 			snippet = {
 				expand = function(args) require("luasnip").lsp_expand(args.body) end,
@@ -40,15 +44,10 @@ return {
 				end, { "i", "s" }),
 			}),
 			sources = cmp.config.sources({
-				{
-					name = "luasnip",
-				},
-				{
-					name = "nvim_lsp",
-				},
-				{
-					name = "buffer",
-				},
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "luasnip" },
+				{ name = "nvim_lsp" },
+				{ name = "buffer" },
 			}),
 		})
 	end,
