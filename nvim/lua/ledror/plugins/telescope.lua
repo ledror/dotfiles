@@ -13,6 +13,7 @@ return {
 
 		-- vim picker
 		vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find)
+		vim.keymap.set("n", "<leader>b", builtin.buffers)
 
 		-- lsp picker
 		vim.keymap.set("n", "gr", builtin.lsp_references)
