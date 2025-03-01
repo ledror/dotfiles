@@ -11,7 +11,7 @@ return {
 	opts = {
 		formatters = {
 			clang_format = {
-				args = { "--style", "{BasedOnStyle: GOOGLE, IndentWidth: 4, TabWidth: 4, ColumnLimit: 100}" },
+				args = { "--style", "{BasedOnStyle: GOOGLE, IndentWidth: 4, TabWidth: 4, ColumnLimit: 100, UseTab: Never}" },
 			},
 			stylua = {
 				inherit = true,

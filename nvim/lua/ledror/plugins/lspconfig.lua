@@ -17,6 +17,7 @@ return {
 		)
 		local lspconfig = require("lspconfig")
 		lspconfig.clangd.setup({
+			root_dir = lspconfig.util.root_pattern(".git", ".clangd", "compile_commands.json", ".clang-tidy"),
 			capabilities = capabilities,
 		})
 	end,
