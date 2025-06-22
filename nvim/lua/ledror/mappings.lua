@@ -49,6 +49,7 @@ vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<C-f>", vim.diagnostic.open_float)
 
--- next/prev diagnostics
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "<leader>l", function()
+	local new_config = not vim.diagnostic.config().virtual_lines
+	vim.diagnostic.config({ virtual_text = not new_config, virtual_lines = new_config })
+end, { desc = "Toggle diagnostic virtual_lines" })

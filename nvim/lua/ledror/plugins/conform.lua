@@ -9,9 +9,16 @@ return {
 		},
 	},
 	opts = {
+		format_on_save = {
+			timeout_ms = 500,
+			lsp_format = "fallback",
+		},
 		formatters = {
 			clang_format = {
-				args = { "--style", "{BasedOnStyle: GOOGLE, IndentWidth: 4, TabWidth: 4, ColumnLimit: 100, UseTab: Never}" },
+				args = {
+					"--style",
+					"{BasedOnStyle: GOOGLE, IndentWidth: 4, TabWidth: 4, ColumnLimit: 100, UseTab: Never}",
+				},
 			},
 			stylua = {
 				inherit = true,
