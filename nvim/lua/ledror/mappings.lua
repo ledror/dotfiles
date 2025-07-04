@@ -54,4 +54,6 @@ vim.keymap.set("n", "<leader>l", function()
 	vim.diagnostic.config({ virtual_text = not new_config, virtual_lines = new_config })
 end, { desc = "Toggle diagnostic virtual_lines" })
 
+vim.keymap.set({ "n" }, "<C-k>", vim.diagnostic.open_float)
+
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
