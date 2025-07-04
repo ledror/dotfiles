@@ -17,7 +17,7 @@ return {
 			clang_format = {
 				args = {
 					"--style",
-					"{BasedOnStyle: GOOGLE, IndentWidth: 4, TabWidth: 4, ColumnLimit: 100, UseTab: Never}",
+					"{BasedOnStyle: GOOGLE, IndentWidth: 4, TabWidth: 4, ColumnLimit: 120, UseTab: Never, AlignAfterOpenBracket: AlwaysBreak, BinPackArguments: false, BinPackParameters: false, AllowShortFunctionsOnASingleLine: Empty, AccessModifierOffset: -4, IndentAccessModifiers: false}",
 				},
 			},
 			stylua = {
