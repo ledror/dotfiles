@@ -29,6 +29,7 @@ return {
 			c = { "clang_format" },
 			cpp = { "clang_format" },
 			lua = { "stylua" },
+			go = { "gofmt" },
 			["_"] = { "trim_whitespace" },
 		},
 	},

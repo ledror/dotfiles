@@ -57,3 +57,5 @@ end, { desc = "Toggle diagnostic virtual_lines" })
 vim.keymap.set({ "n" }, "<C-k>", vim.diagnostic.open_float)
 
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
+
+vim.keymap.set({ "n" }, "<leader>cd", ":cd %:p:h<CR>")
