@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 -- remove search highlights
-vim.keymap.set("n", "<Esc>", "<cmd> noh <CR>")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", { noremap = true, silent = true })
 
 -- insert mode navigations
 vim.keymap.set("i", "<C-a>", "<Esc>I")
