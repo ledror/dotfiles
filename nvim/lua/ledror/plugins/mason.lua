@@ -1,14 +1,9 @@
--- return {
--- 	"mason-org/mason.nvim",
--- 	cmd = { "Mason" },
--- 	config = true,
--- }
-
 return {
 	"mason-org/mason-lspconfig.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {},
 	dependencies = {
-		{ "mason-org/mason.nvim", opts = {} },
+		{ "mason-org/mason.nvim", cmd = "Mason", opts = {} },
 		"neovim/nvim-lspconfig",
 	},
 }
