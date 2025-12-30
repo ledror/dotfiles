@@ -1,10 +1,23 @@
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
-	priority = 1000,
-	opts = { flavour = "mocha" },
-	config = function() vim.cmd("colorscheme catppuccin") end,
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+  {
+    "baliestri/aura-theme",
+    lazy = false,
+    priority = 1000,
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+      vim.cmd([[colorscheme aura-dark]])
+    end
+  }
 }
+
+-- return {
+-- 	"catppuccin/nvim",
+-- 	name = "catppuccin",
+-- 	priority = 1000,
+-- 	opts = { flavour = "mocha" },
+-- 	config = function() vim.cmd("colorscheme catppuccin") end,
+-- }
 
 -- return {
 -- 	"nyoom-engineering/oxocarbon.nvim",

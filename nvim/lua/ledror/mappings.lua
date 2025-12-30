@@ -35,6 +35,9 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+vim.keymap.set("n", "<PageDown>", "<C-d>zz")
+vim.keymap.set("n", "<PageUp>", "<C-u>zz")
+
 -- split shortcuts
 vim.keymap.set("n", "<M-v>", ":vsplit <CR>")
 vim.keymap.set("n", "<M-h>", ":split <CR>")
