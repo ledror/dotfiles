@@ -11,6 +11,12 @@ vim.keymap.set("i", "<C-j>", "<Down>")
 vim.keymap.set("i", "<C-k>", "<Up>")
 vim.keymap.set("i", "<C-l>", "<Right>")
 
+-- move between windows like a boss
+vim.keymap.set('n', '<C-Left>',  '<C-w>h')
+vim.keymap.set('n', '<C-Down>',  '<C-w>j')
+vim.keymap.set('n', '<C-Up>',    '<C-w>k')
+vim.keymap.set('n', '<C-Right>', '<C-w>l')
+
 -- avoid random <C-c> quirks
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
