@@ -12,6 +12,10 @@ return {
 				function() require("dap.ui.widgets").hover() end,
 			},
 			{
+				"<M-Del>",
+				function() require("dap").pause() end,
+			},
+			{
 				"<F5>",
 				function() require("dap").continue() end,
 			},
@@ -103,7 +107,7 @@ return {
 		dependencies = { "mfussenegger/nvim-dap" },
 		opts = {
 			commented = true,
-            virt_text_pos = "eol",
+			virt_text_pos = "eol",
 		},
 	},
 }
