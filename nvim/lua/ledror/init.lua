@@ -1,6 +1,11 @@
 require("ledror.opt")
 require("ledror.mappings")
-require("ledror.lazy")
+
+if vim.g.vscode then
+    require("ledror.vscode")
+else
+    require("ledror.lazy")
+end
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = yank_group,
@@ -8,7 +13,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank({
 			higroup = "IncSearch",
-			timeout = 40,
+			timeout = 70,
 		})
 	end,
 })
