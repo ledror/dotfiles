@@ -28,7 +28,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- yanks to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
 
 -- moving entire lines up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
