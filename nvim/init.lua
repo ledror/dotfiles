@@ -7,7 +7,6 @@ do
 	vim.g.maplocalleader = " "
 
 	vim.g.have_nerd_font = true
-
 	vim.o.relativenumber = true
 	vim.o.nu = true
 
@@ -77,12 +76,9 @@ do
 	})
 	vim.pack.add({ "https://github.com/folke/flash.nvim" })
 	vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
-	vim.pack.add({
-		"https://github.com/folke/noice.nvim",
-		"https://github.com/MunifTanjim/nui.nvim",
-	})
 	vim.pack.add({ "https://github.com/folke/snacks.nvim" })
 	vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
+	vim.pack.add({ "https://github.com/catppuccin/nvim" })
 end
 
 -- Plugin Setups
@@ -136,17 +132,12 @@ do
 			changedelete = { text = "~" },
 		},
 	})
-	require("noice").setup({
-		presets = {
-			command_palette = true,
-		},
-	})
 	require("snacks").setup({
 		bigfile = { enabled = true },
-		dashboard = { enabled = true },
+		dashboard = { enabled = false },
 		indent = { enabled = false },
 		input = { enabled = true },
-		quickfile = { enabled = true },
+		quickfile = { enabled = false },
 		scope = { enabled = true },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
@@ -179,6 +170,8 @@ do
 			["_"] = { "trim_whitespace" },
 		},
 	})
+	require("catppuccin").setup()
+	vim.cmd("colorscheme catppuccin")
 end
 
 -- LSP Configs
@@ -254,3 +247,4 @@ do
 	local conform = require("conform")
 	vim.keymap.set("n", "<leader>fm", function() conform.format({ async = true }) end, { desc = "Format" })
 end
+vim.cmd("colorscheme asdfasdfas")
