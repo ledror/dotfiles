@@ -218,17 +218,17 @@ do
 	-- Top pickers
 	map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
 	map("n", "<leader>sb", function() Snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
-    map("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
-    map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
-    map({ "n", "v" }, "<leader>gw", function() Snacks.picker.grep_word() end, { desc = "Grep Word" })
-    map("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
-    map("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "File Explorer" })
-    map(
-        "n",
-        "<leader>fc",
-        function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
-        { desc = "Find Config File" }
-    )
+	map("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
+	map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
+	map({ "n", "v" }, "<leader>gw", function() Snacks.picker.grep_word() end, { desc = "Grep Word" })
+	map("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
+	map("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "File Explorer" })
+	map(
+		"n",
+		"<leader>fc",
+		function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
+		{ desc = "Find Config File" }
+	)
 	map("n", "<leader>s/", function() Snacks.picker.search_history() end, { desc = "Search History" })
 	map("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "Diagnostics" })
 	map("n", "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, { desc = "Buffers Diagnostics" })
