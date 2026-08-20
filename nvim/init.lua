@@ -18,12 +18,15 @@ do
 
 	vim.o.breakindent = true
 	vim.o.undofile = true
+	vim.o.swapfile = false
+	vim.o.backup = false
+	vim.o.writebackup = false
 
 	vim.o.ignorecase = true
 	vim.o.smartcase = true
 
-	vim.o.updatetime = 200
-	vim.o.timeoutlen = 3000
+	vim.o.updatetime = 100
+	vim.o.timeout = false
 
 	vim.o.splitright = true
 	vim.o.splitbelow = true
@@ -182,69 +185,81 @@ end
 
 -- Mappings
 do
+	local map = vim.keymap.set
 	-- System clipboard management
-	vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-	vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
-	vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
-	vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]])
+	map({ "n", "v" }, "<leader>y", [["+y]])
+	map({ "n", "v" }, "<leader>Y", [["+Y]])
+	map({ "n", "v" }, "<leader>p", [["+p]])
+	map({ "n", "v" }, "<leader>P", [["+P]])
 
-	vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+	map({ "n", "v" }, "<leader>d", [["_d]])
+
+	map("n", "<C-f>", vim.diagnostic.open_float)
+	map("n", "<leader>rn", vim.lsp.buf.rename)
+	map({ "n" }, "<leader>cd", ":cd %:p:h<CR>")
 
 	-- moving entire lines up/down
-	vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-	vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+	map("v", "J", ":m '>+1<CR>gv=gv")
+	map("v", "K", ":m '<-2<CR>gv=gv")
 
 	-- centers cursor after scroll
-	vim.keymap.set("n", "<C-d>", "<C-d>zz")
-	vim.keymap.set("n", "<C-u>", "<C-u>zz")
+	map("n", "<C-d>", "<C-d>zz")
+	map("n", "<C-u>", "<C-u>zz")
 
 	-- Flash
 	local flash = require("flash")
-	vim.keymap.set({ "n", "x", "o" }, "s", function() flash.jump() end, { desc = "Flash" })
-	vim.keymap.set({ "n", "x", "o" }, "S", function() flash.treesitter() end, { desc = "Flash Treesitter" })
-	vim.keymap.set({ "o" }, "r", function() flash.remote() end, { desc = "Remote Flash" })
-	vim.keymap.set({ "x", "o" }, "R", function() flash.treesitter_search() end, { desc = "Treesitter Search" })
+	map({ "n", "x", "o" }, "s", function() flash.jump() end, { desc = "Flash" })
+	map({ "n", "x", "o" }, "S", function() flash.treesitter() end, { desc = "Flash Treesitter" })
+	map({ "o" }, "r", function() flash.remote() end, { desc = "Remote Flash" })
+	map({ "x", "o" }, "R", function() flash.treesitter_search() end, { desc = "Treesitter Search" })
 
 	-- Snacks
 	local Snacks = require("snacks")
-	vim.keymap.set("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
-	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
-	vim.keymap.set("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
-	vim.keymap.set("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
-	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "File Explorer" })
-	vim.keymap.set(
-		"n",
-		"<leader>fc",
-		function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
-		{ desc = "Find Config File" }
-	)
-	vim.keymap.set("n", "<leader>sb", function() Snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
-	vim.keymap.set("n", '<leader>s"', function() Snacks.picker.registers() end, { desc = "Registers" })
-	vim.keymap.set("n", "<leader>s/", function() Snacks.picker.search_history() end, { desc = "Search History" })
-	vim.keymap.set("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "Diagnostics" })
-	vim.keymap.set(
-		"n",
-		"<leader>sD",
-		function() Snacks.picker.diagnostics_buffer() end,
-		{ desc = "Buffers Diagnostics" }
-	)
-	vim.keymap.set("n", "<leader>sj", function() Snacks.picker.jumps() end, { desc = "Jumps" })
-	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
-	vim.keymap.set("n", "<leader>sm", function() Snacks.picker.marks() end, { desc = "Marks" })
-	vim.keymap.set("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo History" })
-	vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
-	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
-	vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
-	vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
-	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" })
-	vim.keymap.set("n", "gai", function() Snacks.picker.lsp_incoming_calls() end, { desc = "C[a]lls Incoming" })
-	vim.keymap.set("n", "gao", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "C[a]lls Outgoing" })
-	vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" })
-	vim.keymap.set("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notifications" })
-	vim.keymap.set("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "Dismiss All Notifications" })
+	-- Top pickers
+	map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
+	map("n", "<leader>sb", function() Snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
+    map("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
+    map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
+    map({ "n", "v" }, "<leader>gw", function() Snacks.picker.grep_word() end, { desc = "Grep Word" })
+    map("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
+    map("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "File Explorer" })
+    map(
+        "n",
+        "<leader>fc",
+        function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
+        { desc = "Find Config File" }
+    )
+	map("n", "<leader>s/", function() Snacks.picker.search_history() end, { desc = "Search History" })
+	map("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "Diagnostics" })
+	map("n", "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, { desc = "Buffers Diagnostics" })
+	-- VIM
+	map("n", "<leader>sj", function() Snacks.picker.jumps() end, { desc = "Jumps" })
+	map("n", '<leader>s"', function() Snacks.picker.registers() end, { desc = "Registers" })
+	map("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
+	map("n", "<leader>sm", function() Snacks.picker.marks() end, { desc = "Marks" })
+	map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo History" })
+	-- LSP
+	map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
+	map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
+	map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
+	map("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
+	map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" })
+	map("n", "gai", function() Snacks.picker.lsp_incoming_calls() end, { desc = "C[a]lls Incoming" })
+	map("n", "gao", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "C[a]lls Outgoing" })
+	map("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" })
+	map("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notifications" })
+	map("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "Dismiss All Notifications" })
+	-- GIT
+	map("n", "<leader>gb", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })
+	map("n", "<leader>gl", function() Snacks.picker.git_log() end, { desc = "Git Log" })
+	map("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Git Status" })
+	map("n", "<leader>gS", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })
+	map("n", "<leader>gd", function() Snacks.picker.git_diff() end, { desc = "Git Diff (Hunks)" })
+	map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Log File" })
+	map({ "n", "v" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse" })
+	map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
 
 	-- Conform
 	local conform = require("conform")
-	vim.keymap.set("n", "<leader>fm", function() conform.format({ async = true }) end, { desc = "Format" })
+	map("n", "<leader>fm", function() conform.format({ async = true }) end, { desc = "Format" })
 end
-vim.cmd("colorscheme asdfasdfas")
