@@ -41,6 +41,8 @@ do
 	vim.o.softtabstop = 4
 	vim.o.shiftwidth = 4
 	vim.o.expandtab = true
+
+	vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
 end
 
 -- Autocmds
@@ -194,6 +196,15 @@ do
 
 	map({ "n", "v" }, "<leader>d", [["_d]])
 
+	map("n", "gK", function()
+		local new_virtual_lines = not vim.diagnostic.config().virtual_lines
+		local new_virtual_text = not vim.diagnostic.config().virtual_text
+		vim.diagnostic.config({ virtual_text = new_virtual_text, virtual_lines = new_virtual_lines })
+	end, { desc = "Toggle diagnostic virtual_lines" })
+	map("n", "gT", function()
+		local new_toggle = not vim.lsp.inlay_hint.is_enabled()
+		vim.lsp.inlay_hint.enable(new_toggle)
+	end, { desc = "Toggle inlay type hints" })
 	map("n", "<C-f>", vim.diagnostic.open_float)
 	map("n", "<leader>rn", vim.lsp.buf.rename)
 	map({ "n" }, "<leader>cd", ":cd %:p:h<CR>")
