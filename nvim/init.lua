@@ -2,7 +2,6 @@
 do
 	-- Enable faster startup by caching compiled Lua modules
 	vim.loader.enable()
-
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 
@@ -172,6 +171,7 @@ do
 			c = { "clang-format" },
 			cpp = { "clang-format" },
 			lua = { "stylua" },
+			python = { "ruff_organize_imports", "ruff_format" },
 			["_"] = { "trim_whitespace" },
 		},
 	})
@@ -183,6 +183,14 @@ end
 do
 	vim.lsp.enable("lua_ls")
 	vim.lsp.enable("clangd")
+	vim.lsp.enable("basedpyright")
+	vim.lsp.config("basedpyright", {
+		settings = {
+			python = {
+				pythonPath = vim.fn.exepath("python"),
+			},
+		},
+	})
 end
 
 -- Mappings
@@ -227,46 +235,46 @@ do
 	-- Snacks
 	local Snacks = require("snacks")
 	-- Top pickers
-	map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
-	map("n", "<leader>sb", function() Snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
-	map("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
-	map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
-	map({ "n", "v" }, "<leader>gw", function() Snacks.picker.grep_word() end, { desc = "Grep Word" })
-	map("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
-	map("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "File Explorer" })
+	map("n", "<leader><space>", Snacks.picker.smart, { desc = "Smart Find Files" })
+	map("n", "<leader>sb", Snacks.picker.grep_buffers, { desc = "Grep Open Buffers" })
+	map("n", "<leader>,", Snacks.picker.buffers, { desc = "Buffers" })
+	map("n", "<leader>/", Snacks.picker.grep, { desc = "Grep" })
+	map({ "n", "v" }, "<leader>gw", Snacks.picker.grep_word, { desc = "Grep Word" })
+	map("n", "<leader>:", Snacks.picker.command_history, { desc = "Command History" })
+	map("n", "<leader>e", Snacks.picker.explorer, { desc = "File Explorer" })
 	map(
 		"n",
 		"<leader>fc",
 		function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
 		{ desc = "Find Config File" }
 	)
-	map("n", "<leader>s/", function() Snacks.picker.search_history() end, { desc = "Search History" })
-	map("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "Diagnostics" })
-	map("n", "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, { desc = "Buffers Diagnostics" })
+	map("n", "<leader>s/", Snacks.picker.search_history, { desc = "Search History" })
+	map("n", "<leader>sd", Snacks.picker.diagnostics, { desc = "Diagnostics" })
+	map("n", "<leader>sD", Snacks.picker.diagnostics_buffer, { desc = "Buffers Diagnostics" })
 	-- VIM
-	map("n", "<leader>sj", function() Snacks.picker.jumps() end, { desc = "Jumps" })
-	map("n", '<leader>s"', function() Snacks.picker.registers() end, { desc = "Registers" })
-	map("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
-	map("n", "<leader>sm", function() Snacks.picker.marks() end, { desc = "Marks" })
-	map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo History" })
+	map("n", "<leader>sj", Snacks.picker.jumps, { desc = "Jumps" })
+	map("n", '<leader>s"', Snacks.picker.registers, { desc = "Registers" })
+	map("n", "<leader>sk", Snacks.picker.keymaps, { desc = "Keymaps" })
+	map("n", "<leader>sm", Snacks.picker.marks, { desc = "Marks" })
+	map("n", "<leader>su", Snacks.picker.undo, { desc = "Undo History" })
 	-- LSP
-	map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
-	map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
-	map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
-	map("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
-	map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" })
-	map("n", "gai", function() Snacks.picker.lsp_incoming_calls() end, { desc = "C[a]lls Incoming" })
-	map("n", "gao", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "C[a]lls Outgoing" })
-	map("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" })
-	map("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notifications" })
-	map("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "Dismiss All Notifications" })
+	map("n", "gd", Snacks.picker.lsp_definitions, { desc = "Goto Definition" })
+	map("n", "gD", Snacks.picker.lsp_declarations, { desc = "Goto Declaration" })
+	map("n", "gr", Snacks.picker.lsp_references, { nowait = true, desc = "References" })
+	map("n", "gi", Snacks.picker.lsp_implementations, { desc = "Goto Implementation" })
+	map("n", "gy", Snacks.picker.lsp_type_definitions, { desc = "Goto T[y]pe Definition" })
+	map("n", "gai", Snacks.picker.lsp_incoming_calls, { desc = "C[a]lls Incoming" })
+	map("n", "gao", Snacks.picker.lsp_outgoing_calls, { desc = "C[a]lls Outgoing" })
+	map("n", "<leader>ss", Snacks.picker.lsp_symbols, { desc = "LSP Symbols" })
+	map("n", "<leader>n", Snacks.picker.notifications, { desc = "Notifications" })
+	map("n", "<leader>un", Snacks.notifier.hide, { desc = "Dismiss All Notifications" })
 	-- GIT
-	map("n", "<leader>gb", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })
-	map("n", "<leader>gl", function() Snacks.picker.git_log() end, { desc = "Git Log" })
-	map("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Git Status" })
-	map("n", "<leader>gS", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })
-	map("n", "<leader>gd", function() Snacks.picker.git_diff() end, { desc = "Git Diff (Hunks)" })
-	map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Log File" })
+	map("n", "<leader>gb", Snacks.picker.git_branches, { desc = "Git Branches" })
+	map("n", "<leader>gl", Snacks.picker.git_log, { desc = "Git Log" })
+	map("n", "<leader>gs", Snacks.picker.git_status, { desc = "Git Status" })
+	map("n", "<leader>gS", Snacks.picker.git_stash, { desc = "Git Stash" })
+	map("n", "<leader>gd", Snacks.picker.git_diff, { desc = "Git Diff (Hunks)" })
+	map("n", "<leader>gf", Snacks.picker.git_log_file, { desc = "Git Log File" })
 	map({ "n", "v" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse" })
 	map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
 
