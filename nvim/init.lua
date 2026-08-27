@@ -282,3 +282,7 @@ do
 	local conform = require("conform")
 	map("n", "<leader>fm", function() conform.format({ async = true }) end, { desc = "Format" })
 end
+
+do
+	require("exp.dap")
+end
