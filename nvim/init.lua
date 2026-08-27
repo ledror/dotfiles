@@ -227,10 +227,10 @@ do
 
 	-- Flash
 	local flash = require("flash")
-	map({ "n", "x", "o" }, "s", function() flash.jump() end, { desc = "Flash" })
-	map({ "n", "x", "o" }, "S", function() flash.treesitter() end, { desc = "Flash Treesitter" })
-	map({ "o" }, "r", function() flash.remote() end, { desc = "Remote Flash" })
-	map({ "x", "o" }, "R", function() flash.treesitter_search() end, { desc = "Treesitter Search" })
+	map({ "n", "x", "o" }, "s", flash.jump, { desc = "Flash" })
+	map({ "n", "x", "o" }, "S", flash.treesitter, { desc = "Flash Treesitter" })
+	map({ "o" }, "r", flash.remote, { desc = "Remote Flash" })
+	map({ "x", "o" }, "R", flash.treesitter_search, { desc = "Treesitter Search" })
 
 	-- Snacks
 	local Snacks = require("snacks")
