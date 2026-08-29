@@ -172,6 +172,7 @@ do
 			cpp = { "clang-format" },
 			lua = { "stylua" },
 			python = { "ruff_organize_imports", "ruff_format" },
+			rust = { "rustfmt", lsp_format = "fallback" },
 			["_"] = { "trim_whitespace" },
 		},
 	})
