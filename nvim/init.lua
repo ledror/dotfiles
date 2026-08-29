@@ -123,7 +123,7 @@ do
 	require("flash").setup({
 		modes = {
 			search = {
-				enabled = true,
+				enabled = false,
 			},
 		},
 	})
@@ -213,8 +213,16 @@ do
 		local new_toggle = not vim.lsp.inlay_hint.is_enabled()
 		vim.lsp.inlay_hint.enable(new_toggle)
 	end, { desc = "Toggle inlay type hints" })
+	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 	map("n", "<C-f>", vim.diagnostic.open_float)
 	map("n", "<leader>rn", vim.lsp.buf.rename)
+	map("n", "<leader>cr", vim.lsp.codelens.run)
+	map(
+		"n",
+		"<leader>cl",
+		function() vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled()) end,
+		{ desc = "Toggle CodeLens" }
+	)
 	map({ "n" }, "<leader>cd", ":cd %:p:h<CR>")
 
 	-- moving entire lines up/down
