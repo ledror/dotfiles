@@ -112,7 +112,7 @@ do
 			},
 		},
 		fuzzy = {
-			implementation = "prefer_rust_with_warning",
+			implementation = "rust",
 		},
 	})
 	require("lualine").setup({
