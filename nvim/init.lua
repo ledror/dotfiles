@@ -42,6 +42,8 @@ do
 	vim.o.expandtab = true
 
 	vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+
+	vim.cmd.colorscheme("catppuccin")
 end
 
 -- Autocmds
@@ -82,7 +84,8 @@ do
 	vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
 	vim.pack.add({ "https://github.com/folke/snacks.nvim" })
 	vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
-	vim.pack.add({ "https://github.com/catppuccin/nvim" })
+	vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
+	vim.pack.add({ "https://github.com/j-hui/fidget.nvim" })
 end
 
 -- Plugin Setups
@@ -176,8 +179,9 @@ do
 			["_"] = { "trim_whitespace" },
 		},
 	})
-	require("catppuccin").setup()
-	vim.cmd("colorscheme catppuccin")
+	local mini_misc = require("mini.misc")
+	mini_misc.setup_termbg_sync()
+	require("fidget").setup()
 end
 
 -- LSP Configs
