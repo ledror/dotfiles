@@ -41,6 +41,8 @@ do
 	vim.o.shiftwidth = 4
 	vim.o.expandtab = true
 
+    vim.opt.fileformats = { "unix", "dos" }
+
 	vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
 
 	vim.cmd.colorscheme("catppuccin")
