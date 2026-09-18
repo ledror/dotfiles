@@ -87,6 +87,7 @@ do
 	vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 	vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
 	vim.pack.add({ "https://github.com/j-hui/fidget.nvim" })
+	vim.pack.add({ "https://github.com/rcarriga/nvim-notify" })
 end
 
 -- Plugin Setups
@@ -187,6 +188,15 @@ do
 	local mini_misc = require("mini.misc")
 	mini_misc.setup_termbg_sync()
 	require("fidget").setup({})
+	local notify = require("notify")
+	notify.setup({
+		stages = "static",
+		timeout = 3000,
+		top_down = true,
+		max_width = 60,
+		merge_duplicates = true,
+	})
+	vim.notify = notify
 end
 
 -- LSP Configs
