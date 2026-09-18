@@ -41,7 +41,7 @@ do
 	vim.o.shiftwidth = 4
 	vim.o.expandtab = true
 
-    vim.opt.fileformats = { "unix", "dos" }
+	vim.opt.fileformats = { "unix", "dos" }
 
 	vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
 
@@ -94,7 +94,6 @@ end
 do
 	require("nvim-autopairs").setup()
 	require("lazydev").setup()
-	require("nvim-treesitter")
 	require("blink.cmp").setup({
 		keymap = {
 			preset = "super-tab",
@@ -118,6 +117,9 @@ do
 		},
 		fuzzy = {
 			implementation = "rust",
+		},
+		signature = {
+			enabled = true,
 		},
 	})
 	require("lualine").setup({
@@ -183,7 +185,7 @@ do
 	})
 	local mini_misc = require("mini.misc")
 	mini_misc.setup_termbg_sync()
-	require("fidget").setup()
+	require("fidget").setup({})
 end
 
 -- LSP Configs
@@ -250,7 +252,7 @@ do
 	-- Snacks
 	local Snacks = require("snacks")
 	-- Top pickers
-	map("n", "<leader><space>", Snacks.picker.smart, { desc = "Smart Find Files" })
+	map("n", "<leader><space>", Snacks.picker.files, { desc = "Find Files" })
 	map("n", "<leader>sb", Snacks.picker.grep_buffers, { desc = "Grep Open Buffers" })
 	map("n", "<leader>,", Snacks.picker.buffers, { desc = "Buffers" })
 	map("n", "<leader>/", Snacks.picker.grep, { desc = "Grep" })
