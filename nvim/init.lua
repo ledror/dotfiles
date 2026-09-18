@@ -44,8 +44,6 @@ do
 	vim.opt.fileformats = { "unix", "dos" }
 
 	vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
-
-	vim.cmd.colorscheme("catppuccin")
 end
 
 -- Autocmds
@@ -65,6 +63,7 @@ end
 
 -- Plugin Installations
 do
+	vim.pack.add({ "https://github.com/catppuccin/nvim" })
 	vim.pack.add({ "https://github.com/windwp/nvim-autopairs" })
 	vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
 	vim.pack.add({ "https://github.com/folke/lazydev.nvim" })
@@ -92,6 +91,8 @@ end
 
 -- Plugin Setups
 do
+	require("catppuccin").setup({ no_italic = true })
+	vim.cmd.colorscheme("catppuccin-mocha")
 	require("nvim-autopairs").setup()
 	require("lazydev").setup()
 	require("blink.cmp").setup({
