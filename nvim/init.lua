@@ -87,7 +87,6 @@ do
 	vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 	vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
 	vim.pack.add({ "https://github.com/j-hui/fidget.nvim" })
-	vim.pack.add({ "https://github.com/stevearc/overseer.nvim" })
 end
 
 -- Plugin Setups
@@ -188,29 +187,13 @@ do
 	local mini_misc = require("mini.misc")
 	mini_misc.setup_termbg_sync()
 	require("fidget").setup({})
-
-	require("overseer").setup({
-		component_aliases = {
-			default = {
-				"on_exit_set_status",
-				"on_complete_notify",
-				"on_result_diagnostics",
-				{
-					"on_result_diagnostics_quickfix",
-					open = true,
-					close = true,
-				},
-				"default",
-				"unique",
-			},
-		},
-	})
 end
 
 -- LSP Configs
 do
 	vim.lsp.enable("lua_ls")
 	vim.lsp.enable("clangd")
+	vim.lsp.enable("glsl_analyzer")
 	vim.lsp.enable("basedpyright")
 	vim.lsp.config("basedpyright", {
 		settings = {

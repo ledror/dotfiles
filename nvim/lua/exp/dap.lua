@@ -7,6 +7,25 @@ vim.pack.add({
 vim.pack.add({
 	"https://github.com/mfussenegger/nvim-dap",
 	"https://github.com/igorlfs/nvim-dap-view",
+	"https://github.com/stevearc/overseer.nvim",
+})
+
+require("overseer").setup({
+	dap = true,
+	component_aliases = {
+		default = {
+			"on_exit_set_status",
+			"on_complete_notify",
+			"on_result_diagnostics",
+			{
+				"on_result_diagnostics_quickfix",
+				open = true,
+				close = true,
+			},
+			"default",
+			"unique",
+		},
+	},
 })
 
 local dap = require("dap")
