@@ -21,7 +21,10 @@ dap.adapters.lldb = {
 	},
 }
 
-dap_view.setup({ auto_toggle = "keep_terminal", virtual_text = { enabled = true, position = "eol" } })
+dap_view.setup({
+	auto_toggle = "open",
+	virtual_text = { enabled = true, position = "eol" },
+})
 
 local map = vim.keymap.set
 -- map({ "n" }, "<leader>K", function() require("dap.ui.widgets").hover() end, { desc = "" })
