@@ -12,6 +12,15 @@ vim.pack.add({
 local dap = require("dap")
 local dap_view = require("dap-view")
 
+dap.adapters.lldb = {
+	type = "server",
+	port = "${port}",
+	executable = {
+		command = "codelldb",
+		args = { "--port", "${port}" },
+	},
+}
+
 dap_view.setup({ auto_toggle = "keep_terminal", virtual_text = { enabled = true, position = "eol" } })
 
 local map = vim.keymap.set

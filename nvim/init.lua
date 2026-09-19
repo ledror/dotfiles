@@ -87,6 +87,7 @@ do
 	vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 	vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
 	vim.pack.add({ "https://github.com/j-hui/fidget.nvim" })
+	vim.pack.add({ "https://github.com/stevearc/overseer.nvim" })
 end
 
 -- Plugin Setups
@@ -187,6 +188,23 @@ do
 	local mini_misc = require("mini.misc")
 	mini_misc.setup_termbg_sync()
 	require("fidget").setup({})
+
+	require("overseer").setup({
+		component_aliases = {
+			default = {
+				"on_exit_set_status",
+				"on_complete_notify",
+				"on_result_diagnostics",
+				{
+					"on_result_diagnostics_quickfix",
+					open = true,
+					close = true,
+				},
+				"default",
+				"unique",
+			},
+		},
+	})
 end
 
 -- LSP Configs
@@ -299,6 +317,11 @@ do
 	-- Conform
 	local conform = require("conform")
 	map("n", "<leader>fm", function() conform.format({ async = true }) end, { desc = "Format" })
+
+	-- Overseer
+	map("n", "<leader>ot", "<cmd>OverseerToggle!<cr>", { desc = "Toggle Task" })
+	map("n", "<leader>or", "<cmd>OverseerRun<cr>", { desc = "Run Task" })
+	map("n", "<leader>oa", "<cmd>OverseerTaskAction<cr>", { desc = "Task Action" })
 end
 
 do
