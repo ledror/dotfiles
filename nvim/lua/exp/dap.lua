@@ -58,6 +58,7 @@ map({ "n" }, "<C-F10>", dap.run_to_cursor, { desc = "Run To Cursor" })
 map({ "n" }, "<F11>", dap.step_into, { desc = "Step Into" })
 map({ "n" }, "<S-F11>", dap.step_out, { desc = "Step Out" })
 map({ "n" }, "<F6>", dap_view.add_expr, { desc = "Add Expression To Debugger View" })
+map({ "n" }, "<leader>dt", function() dap_view.toggle(true) end, { desc = "Toggle Dap View" })
 
 vim.fn.sign_define("DapBreakpoint", {
 	text = "●",

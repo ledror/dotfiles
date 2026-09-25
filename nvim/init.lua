@@ -193,7 +193,7 @@ end
 do
 	vim.lsp.enable("lua_ls")
 	vim.lsp.enable("clangd")
-	vim.lsp.enable("glsl_analyzer")
+	vim.lsp.enable("slangd")
 	vim.lsp.enable("basedpyright")
 	vim.lsp.config("basedpyright", {
 		settings = {
