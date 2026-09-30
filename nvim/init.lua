@@ -32,7 +32,7 @@ do
 
 	vim.o.inccommand = "split"
 
-	vim.o.scrolloff = 10
+	vim.o.scrolloff = 5
 
 	vim.o.confirm = true
 
@@ -294,6 +294,8 @@ do
 	map("n", "<leader>gS", Snacks.picker.git_stash, { desc = "Git Stash" })
 	map("n", "<leader>gd", Snacks.picker.git_diff, { desc = "Git Diff (Hunks)" })
 	map("n", "<leader>gf", Snacks.picker.git_log_file, { desc = "Git Log File" })
+	map("n", "<leader>bl", Snacks.git.blame_line, { desc = "Git blame line" })
+	map("n", "<leader>bb", require("gitsigns").blame, { desc = "Git blame" })
 	map({ "n", "v" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse" })
 	map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
 
