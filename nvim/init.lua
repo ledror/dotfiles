@@ -218,6 +218,9 @@ do
 	map({ "n", "v" }, "<leader>p", [["+p]])
 	map({ "n", "v" }, "<leader>P", [["+P]])
 
+	map("ca", "Q", "q")
+	map("ca", "W", "w")
+
 	map({ "n", "v" }, "<leader>d", [["_d]])
 
 	map("n", "gK", function()
