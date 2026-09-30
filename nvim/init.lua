@@ -87,6 +87,7 @@ do
 	vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 	vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
 	vim.pack.add({ "https://github.com/j-hui/fidget.nvim" })
+	vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" })
 end
 
 -- Plugin Setups
@@ -187,6 +188,10 @@ do
 	local mini_misc = require("mini.misc")
 	mini_misc.setup_termbg_sync()
 	require("fidget").setup({})
+
+	require("render-markdown").setup({
+		completions = { lsp = { enabled = true } },
+	})
 end
 
 -- LSP Configs
