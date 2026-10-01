@@ -3,11 +3,15 @@ vim.pack.add({
 		src = "https://github.com/mrcjkb/rustaceanvim",
 		version = vim.version.range("^9"),
 	},
-})
-vim.pack.add({
-	"https://github.com/mfussenegger/nvim-dap",
-	"https://github.com/igorlfs/nvim-dap-view",
-	"https://github.com/stevearc/overseer.nvim",
+	{
+		src = "https://github.com/mfussenegger/nvim-dap",
+	},
+	{
+		src = "https://github.com/igorlfs/nvim-dap-view",
+	},
+	{
+		src = "https://github.com/stevearc/overseer.nvim",
+	},
 })
 
 require("overseer").setup({
@@ -43,6 +47,17 @@ dap.adapters.lldb = {
 dap_view.setup({
 	auto_toggle = "open",
 	virtual_text = { enabled = true, position = "eol" },
+	winbar = {
+		sections = { "scopes", "breakpoints", "threads" },
+		default_section = "scopes",
+	},
+	windows = {
+		size = 0.35,
+		position = "right",
+		terminal = {
+			position = "above",
+		},
+	},
 })
 
 local map = vim.keymap.set

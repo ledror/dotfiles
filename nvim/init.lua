@@ -221,6 +221,8 @@ do
 	map("ca", "Q", "q")
 	map("ca", "W", "w")
 
+	map("t", "<leader><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
 	map({ "n", "v" }, "<leader>d", [["_d]])
 
 	map("n", "gK", function()
