@@ -204,7 +204,7 @@ do
 	mini_misc.setup_termbg_sync()
 	require("fidget").setup({})
 
-	local uni_vault = vim.fn.has("win32") == 1 and "C:/checkouts/University" or ""
+	local uni_vault = vim.fn.has("win32") == 1 and "C:/checkouts/University" or "~/checkouts/University"
 	require("obsidian").setup({
 		legacy_commands = false,
 		workspaces = {
