@@ -91,7 +91,7 @@ do
 	vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" })
 
 	-- LaTeX: vimtex reads vim.g.vimtex_* at load time, so set them before adding
-	vim.g.vimtex_view_method = vim.fn.has("win32") == 1 and "sumatrapdf" or "skim"
+	vim.g.vimtex_view_method = vim.fn.has("win32") == 1 and "general" or "skim" -- general = SumatraPDF on Windows (auto when on PATH)
 	vim.g.vimtex_compiler_latexmk = { out_dir = "build" }
 	vim.g.vimtex_quickfix_open_on_warning = 0
 	-- vimtex popups hide the cursor and restore guicursor afterwards; with guicursor="" the
