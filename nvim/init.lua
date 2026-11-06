@@ -88,6 +88,21 @@ do
 	vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
 	vim.pack.add({ "https://github.com/j-hui/fidget.nvim" })
 	vim.pack.add({ "https://github.com/obsidian-nvim/obsidian.nvim" })
+	vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" })
+
+	-- LaTeX: vimtex reads vim.g.vimtex_* at load time, so set them before adding
+	vim.g.vimtex_view_method = vim.fn.has("win32") == 1 and "sumatrapdf" or "skim"
+	vim.g.vimtex_compiler_latexmk = { out_dir = "build" }
+	vim.g.vimtex_quickfix_open_on_warning = 0
+	-- vimtex popups hide the cursor and restore guicursor afterwards; with guicursor="" the
+	-- terminal never gets the "show" back, so the cursor stays invisible. Cmdline prompts avoid it.
+	vim.g.vimtex_ui_method = { confirm = "legacy", input = "legacy", select = "legacy" }
+	vim.pack.add({ "https://github.com/lervag/vimtex" })
+	-- Start continuous compile on open: every save rebuilds, viewer auto-reloads
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "VimtexEventInitPost",
+		command = "call vimtex#compiler#start()",
+	})
 end
 
 -- Plugin Setups
@@ -207,6 +222,7 @@ do
 	vim.lsp.enable("clangd")
 	vim.lsp.enable("slangd")
 	vim.lsp.enable("basedpyright")
+	vim.lsp.enable("texlab")
 	vim.lsp.config("basedpyright", {
 		settings = {
 			python = {

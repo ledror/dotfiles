@@ -85,6 +85,10 @@
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
+    },
+    "vimtex": {
+      "rev": "3f96503904db6acdb7108cd93a9580dd41e88555",
+      "src": "https://github.com/lervag/vimtex"
     }
   }
 }
